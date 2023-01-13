@@ -1,0 +1,4 @@
+
+dependencies {
+    implementation 'com.mixpanel.android:mixpanel-android:7.+'
+}
