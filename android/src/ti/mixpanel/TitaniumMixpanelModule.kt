@@ -53,4 +53,49 @@ class TitaniumMixpanelModule: KrollModule() {
 	fun setUserID(userID: String) {
 		mixpanelInstance?.identify(userID)
 	}
+
+	@Kroll.method
+	fun alias(args: Array<Any>) {
+		if (args.size != 2) {
+			throw IllegalArgumentException("alias requires exactly 2 arguments: [alias, distinctId]")
+		}
+		val alias = args[0] as String
+		val distinctId = args[1] as String
+		mixpanelInstance?.alias(alias, distinctId)
+	}
+
+	@Kroll.method
+	fun identify(distinctId: String) {
+		mixpanelInstance?.identify(distinctId)
+	}
+
+	@Kroll.method
+	fun getDistinctID(): String {
+		return mixpanelInstance?.distinctId ?: ""
+	}
+
+	@Kroll.method
+	fun registerSuperProperties(props: KrollDict) {
+		mixpanelInstance?.registerSuperProperties(JSONObject(props))
+	}
+
+	@Kroll.method
+	fun reset() {
+		mixpanelInstance?.reset()
+	}
+
+	@Kroll.method
+	fun flush() {
+		mixpanelInstance?.flush()
+	}
+
+	@Kroll.method
+	fun optOutTracking() {
+		mixpanelInstance?.optOutTracking()
+	}
+
+	@Kroll.method
+	fun optInTracking() {
+		mixpanelInstance?.optInTracking()
+	}
 }
